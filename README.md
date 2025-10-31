@@ -92,7 +92,7 @@ Each contact has the shape:
   "id": 1,
   "name": "Your Name",
   "email": "youremail@example.com",
-  "phone": "+977 9800000000"
+  "phone": "+977 9812345678"
 }
 ```
 
