@@ -91,7 +91,7 @@ Each contact has the shape:
 {
   "id": 1,
   "name": "Your Name",
-  "email": "youremail@example.com",
+  "email": "example@example.com",
   "phone": "+977 9812345678"
 }
 ```
