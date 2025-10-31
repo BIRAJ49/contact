@@ -1,0 +1,32 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install backend dependencies
+        run: npm install --prefix server
+
+      - name: Install frontend dependencies
+        run: npm install --prefix client
+
+      - name: Build frontend
+        run: npm run client:build
+
+      - name: Placeholder deploy step
+        run: echo "Add your deployment commands here"
