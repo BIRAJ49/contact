@@ -1,6 +1,7 @@
 # Demo Contacts App
 
 A minimal full-stack contacts manager with:
+
 - **Backend:** Node.js + Express + PostgreSQL
 - **Frontend:** React (Vite)
 
@@ -46,11 +47,13 @@ This creates the `contacts` table and a trigger to keep `updated_at` in sync.
 ### Start the servers
 
 In one terminal (backend):
+
 ```bash
 npm run dev --prefix server
 ```
 
 In another terminal (frontend):
+
 ```bash
 npm run dev --prefix client
 ```
@@ -60,11 +63,13 @@ The API runs at `http://localhost:4000` and Vite serves the React app at `http:/
 ## Scripts Reference
 
 Backend (`server`):
+
 - `npm run dev` – start Express with hot reload (nodemon)
 - `npm start` – start Express without nodemon
 - `npm run migrate` – apply SQL migrations in `server/sql/init.sql`
 
 Frontend (`client`):
+
 - `npm run dev` – start Vite dev server
 - `npm run build` – build production assets
 - `npm run preview` – preview the production build
@@ -73,21 +78,21 @@ Frontend (`client`):
 
 All routes are prefixed with `/api`.
 
-| Method | Route               | Description            |
-| ------ | ------------------- | ---------------------- |
-| GET    | `/contacts`         | List all contacts      |
-| POST   | `/contacts`         | Create a new contact   |
-| PUT    | `/contacts/:id`     | Update an existing contact |
-| DELETE | `/contacts/:id`     | Delete a contact       |
+| Method | Route           | Description                |
+| ------ | --------------- | -------------------------- |
+| GET    | `/contacts`     | List all contacts          |
+| POST   | `/contacts`     | Create a new contact       |
+| PUT    | `/contacts/:id` | Update an existing contact |
+| DELETE | `/contacts/:id` | Delete a contact           |
 
 Each contact has the shape:
 
 ```json
 {
   "id": 1,
-  "name": "Ada Lovelace",
-  "email": "ada@example.com",
-  "phone": "+1 (555) 123-4567"
+  "name": "Your Name",
+  "email": "youremail@example.com",
+  "phone": "+977 9800000000"
 }
 ```
 
