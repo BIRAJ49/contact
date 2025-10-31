@@ -74,6 +74,31 @@ Frontend (`client`):
 - `npm run build` – build production assets
 - `npm run preview` – preview the production build
 
+## Deployment Prep
+
+- Commit `server/.env.example` only; keep any real `.env` files out of git (covered by `.gitignore` alongside `*.pem`, `*.db`, `node_modules/`, etc.).
+- Populate GitHub → Settings → Secrets → Actions with:
+  - `SSH_HOST` – your EC2 public IP or hostname
+  - `SSH_USER` – e.g. `ubuntu`
+  - `SSH_KEY` – contents of your EC2 `.pem`
+  - `DATABASE_URL` – production Postgres connection string
+  - `APP_PORT` (optional) – defaults to `4000` if unset
+- Rotate secrets whenever you redeploy or replace keys; never bake them into images or commits.
+
+## Docker (API Only)
+
+The `server/Dockerfile` packages just the Express API so you can host the React front end separately (e.g., Vercel/Netlify) and ship the backend to EC2.
+
+```bash
+# Build the image
+docker build -t demoapp-api ./server
+
+# Run locally with required environment variables
+docker run -p 4000:4000 -e DATABASE_URL=postgres://... demoapp-api
+```
+
+Run `npm run migrate --prefix server` (or execute the SQL in `server/sql`) against your production database before starting the container.
+
 ## API Overview
 
 All routes are prefixed with `/api`.
