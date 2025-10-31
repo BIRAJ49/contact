@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 const initialTouched = {
   name: false,
@@ -6,7 +6,13 @@ const initialTouched = {
   phone: false,
 };
 
-function ContactForm({ initialValues, onSubmit, onCancel, isEditing, submitting }) {
+function ContactForm({
+  initialValues,
+  onSubmit,
+  onCancel,
+  isEditing,
+  submitting,
+}) {
   const [values, setValues] = useState(initialValues);
   const [touched, setTouched] = useState(initialTouched);
 
@@ -56,11 +62,13 @@ function ContactForm({ initialValues, onSubmit, onCancel, isEditing, submitting 
           value={values.name}
           onChange={handleChange}
           onBlur={handleBlur}
-          placeholder="Ada Lovelace"
+          placeholder="Your Name"
           disabled={submitting}
           required
         />
-        {touched.name && errors.name && <small className="input-error">{errors.name}</small>}
+        {touched.name && errors.name && (
+          <small className="input-error">{errors.name}</small>
+        )}
       </label>
 
       <label>
@@ -71,11 +79,13 @@ function ContactForm({ initialValues, onSubmit, onCancel, isEditing, submitting 
           value={values.email}
           onChange={handleChange}
           onBlur={handleBlur}
-          placeholder="ada@example.com"
+          placeholder="example@example.com"
           disabled={submitting}
           required
         />
-        {touched.email && errors.email && <small className="input-error">{errors.email}</small>}
+        {touched.email && errors.email && (
+          <small className="input-error">{errors.email}</small>
+        )}
       </label>
 
       <label>
@@ -86,21 +96,32 @@ function ContactForm({ initialValues, onSubmit, onCancel, isEditing, submitting 
           value={values.phone}
           onChange={handleChange}
           onBlur={handleBlur}
-          placeholder="+1 (555) 123-4567"
+          placeholder="977 9812345678"
           disabled={submitting}
           required
         />
-        {touched.phone && errors.phone && <small className="input-error">{errors.phone}</small>}
+        {touched.phone && errors.phone && (
+          <small className="input-error">{errors.phone}</small>
+        )}
       </label>
 
       <div className="form-actions">
         {isEditing && (
-          <button type="button" className="secondary" onClick={handleCancel} disabled={submitting}>
+          <button
+            type="button"
+            className="secondary"
+            onClick={handleCancel}
+            disabled={submitting}
+          >
             Cancel
           </button>
         )}
         <button type="submit" disabled={submitting || hasErrors}>
-          {submitting ? 'Saving…' : isEditing ? 'Update Contact' : 'Add Contact'}
+          {submitting
+            ? "Saving…"
+            : isEditing
+            ? "Update Contact"
+            : "Add Contact"}
         </button>
       </div>
     </form>
@@ -109,23 +130,23 @@ function ContactForm({ initialValues, onSubmit, onCancel, isEditing, submitting 
 
 function validate(values) {
   const errors = {
-    name: '',
-    email: '',
-    phone: '',
+    name: "",
+    email: "",
+    phone: "",
   };
 
   if (!values.name.trim()) {
-    errors.name = 'Name is required';
+    errors.name = "Name is required";
   }
 
   if (!values.email.trim()) {
-    errors.email = 'Email is required';
+    errors.email = "Email is required";
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim())) {
-    errors.email = 'Enter a valid email';
+    errors.email = "Enter a valid email";
   }
 
   if (!values.phone.trim()) {
-    errors.phone = 'Phone is required';
+    errors.phone = "Phone is required";
   }
 
   return errors;
